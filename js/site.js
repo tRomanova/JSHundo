@@ -12,7 +12,7 @@ function getValues() {
     
     //verify our inputs are numbers
     if ( Number.isInteger(startValue) && Number.isInteger(endValue)) {
-        //if thay are, generate our numbers
+        //if they are, generate our numbers
         let numbersAray = generateNumbers(startValue, endValue);
 
         //then display on the page

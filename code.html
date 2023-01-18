@@ -116,7 +116,7 @@ function displayNumbers(numbersAray) {
     let tableBody = document.getElementById('results')
     let tableHtml = "";
     
-    for (let i = 0; i < numbersAray.length; i++) {
+    for (let i = 0; i &lt; numbersAray.length; i++) {
         let value = numbersAray[i];
         
         let className = value % 2 == 0 ? 'even' : 'odd';
@@ -128,15 +128,15 @@ function displayNumbers(numbersAray) {
         // }
 
         if (i % 5 == 0) {
-            tableHtml += '<tr>';
+            tableHtml += '&lt;tr&gt;';
         }
 
-        let tableRow = `<td class="${className}">${value}</td>`;
+        let tableRow = `&lt;td class="${className}"&gt;${value}&lt;/td&gt;`;
         tableHtml = tableHtml + tableRow;
         // tableHtml += tableRow;
 
         if ((i + 1) % 5 == 0) {
-            tableHtml += '</tr>';
+            tableHtml += '&lt;/tr&gt;';
         }
     }
     tableBody.innerHTML = tableHtml;
@@ -145,17 +145,17 @@ function displayNumbers(numbersAray) {
                     </pre>
                 </div>
                 <div class="col col-12 col-lg-4">
-                    <p>The code is structured in 3 functions</p>
+                    <h5>The code is structured in 3 functions.</h5>
                     <!-- <p><code>displayMessage</code></p> -->
-                    <p>User enters starting and ending number.
-                        The function takes starting and ending numbers as input and 
-                        generate the series
-                        he numbers will be displaye
+                    <p>User enters starting and ending numbers.
+                        The function takes these two numbers as input and
+                        generate the series.
                         First function grabs the values from HTML form,
-                        checks if this value is an integer and if it is
-                        I am calling another function that will generate the number series and
-                        returns an array.
-                        when I got an array I am calling the function that will display that numbers  
+                        checks if it is an integer. If not, an error is thrown.
+                        If the numbers are intergers, a second function (generateNumbers) is called
+                        that generates an array of consecutive integers between start and end values.
+                        Finally third function (displayNumbers) is called that takes the array as input,
+                        and puts them in table cells with 5 columns in each row.
                     </p>
                 </div>
             </div>

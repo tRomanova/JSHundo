@@ -90,3 +90,6 @@ body {
 .odd {
     color: red !important;
 }
+.title {
+    color: rgb(14, 202, 235);
+}
