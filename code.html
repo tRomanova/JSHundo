@@ -16,14 +16,12 @@
     <title>Hundo: a cording Callenges</title>
 </head>
 
-</head>
-
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="#index.html">
-                    <img src="/img/Open (7).png" height="30" alt="">
+                    <img src="/img/Open (6).png" height="50" alt="">
                     Hundo
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -36,13 +34,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                            <a class="nav-link " href="/index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="app.html">The App</a>
+                            <a class="nav-link" href="app.html">Hundo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/code.html">The code</a>
+                            <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">The Repo</a>
@@ -59,7 +57,6 @@
         </nav>
     </header>
 
-
     <main class="content container">
 
         <div class="content container">
@@ -69,92 +66,90 @@
                     <pre class="line-numbers">
                         <code class="language-js">
                             // get the user input from the page
-// Controller function
-function getValues() {
-    //get the values from the page
-    let startValue = document.getElementById('startValue').value;
-    let endValue = document.getElementById('endValue').value;
+                            // Controller function
+                            function getValues() {
+                                //get the values from the page
+                                let startValue = document.getElementById('startValue').value;
+                                let endValue = document.getElementById('endValue').value;
 
+                                //parse our inputs as number
+                                startValue = parseInt(startValue)
+                                endValue = parseInt(endValue)
+                                
+                                //verify our inputs are numbers
+                                if ( Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                    //if thay are, generate our numbers
+                                    let numbersAray = generateNumbers(startValue, endValue);
 
-    //parse our inputs as number
-    startValue = parseInt(startValue)
-    endValue = parseInt(endValue)
-    
-    //verify our inputs are numbers
-    if ( Number.isInteger(startValue) && Number.isInteger(endValue)) {
-        //if thay are, generate our numbers
-        let numbersAray = generateNumbers(startValue, endValue);
+                                    //then display on the page
+                                    displayNumbers(numbersAray);
+                                }else{
+                                    //if they are not, tell our user
+                                    Swal.fire(
+                                        {
+                                            icon: "error",
+                                            title: "Oops",
+                                            text: "Only integer are allow for Hondo!"
+                                        }
+                                    )
+                                }
+                            }
+                            // generate numbers
+                            function generateNumbers(start, end) {
+                                let numbers = [];
 
-        //then display on the page
-        displayNumbers(numbersAray);
-    }else{
-        //if they are not, tell our user
-        Swal.fire(
-            {
-                icon: "error",
-                title: "Oops",
-                text: "Only integer are allow for Hondo!"
-            }
-        )
-    }
+                                for (let value = start; value <= end; value++) {
+                                    
+                                    numbers.push(value)
+                                }
+                                return numbers;
+                            }
 
-}
-// generate ore numbers
-function generateNumbers(start, end) {
-    let numbers = [];
+                            // display numbers on the page
+                            function displayNumbers(numbersAray) {
+                                let tableBody = document.getElementById('results')
+                                let tableHtml = "";
+                                
+                                for (let i = 0; i &lt; numbersAray.length; i++) {
+                                    let value = numbersAray[i];
+                                    
+                                    let className = value % 2 == 0 ? 'even' : 'odd';
+                                    
+                                    if (i % 5 == 0) {
+                                        tableHtml += '&lt;tr&gt;';
+                                    }
 
-    for (let value = start; value <= end; value++) {
-        
-        numbers.push(value)
-    }
-    return numbers;
-}
+                                    let tableRow = `&lt;td class="${className}"&gt;${value}&lt;/td&gt;`;
+                                    tableHtml = tableHtml + tableRow;
 
-// display them on the page
-// View function
-function displayNumbers(numbersAray) {
-    let tableBody = document.getElementById('results')
-    let tableHtml = "";
-    
-    for (let i = 0; i &lt; numbersAray.length; i++) {
-        let value = numbersAray[i];
-        
-        let className = value % 2 == 0 ? 'even' : 'odd';
-        
-        // if(value % 2 == 0){
-        //     className = 'even'
-        // }else{
-        //     className = 'odd'
-        // }
-
-        if (i % 5 == 0) {
-            tableHtml += '&lt;tr&gt;';
-        }
-
-        let tableRow = `&lt;td class="${className}"&gt;${value}&lt;/td&gt;`;
-        tableHtml = tableHtml + tableRow;
-        // tableHtml += tableRow;
-
-        if ((i + 1) % 5 == 0) {
-            tableHtml += '&lt;/tr&gt;';
-        }
-    }
-    tableBody.innerHTML = tableHtml;
-}
+                                    if ((i + 1) % 5 == 0) {
+                                        tableHtml += '&lt;/tr&gt;';
+                                    }
+                                }
+                                tableBody.innerHTML = tableHtml;
+                            }
                         </code>
                     </pre>
                 </div>
                 <div class="col col-12 col-lg-4">
                     <h5>The code is structured in 3 functions.</h5>
                     <!-- <p><code>displayMessage</code></p> -->
-                    <p>User enters starting and ending numbers.
+                    <p class="p-3">
+                        <!-- User enters starting and ending numbers.
                         The function takes these two numbers as input and
-                        generate the series.
-                        First function grabs the values from HTML form,
+                        generate the series. -->
+                        <code>getValues</code>
+                        function grabs the values from HTML form,
                         checks if it is an integer. If not, an error is thrown.
-                        If the numbers are intergers, a second function (generateNumbers) is called
+                    </p>
+                    <p class="p-3">
+                        If the numbers are intergers, a second function <code>generateNumbers</code>  is called
                         that generates an array of consecutive integers between start and end values.
-                        Finally third function (displayNumbers) is called that takes the array as input,
+                    </p>
+                    <p class="p-3">
+                        Finally third function <code>displayNumbers</code> 
+                        <!-- is called that -->
+                        takes the array as input,
                         and puts them in table cells with 5 columns in each row.
                     </p>
                 </div>
@@ -168,7 +163,7 @@ function displayNumbers(numbersAray) {
                     &copy; Tatyana Romanova
                 </div>
                 <div class="col-12 text-center">
-                    <img src="/img/Open (7).png" height=50>
+                    <img src="/img/Open (6).png" height=50>
                 </div>
                 <div class="col-12 text-center text-lg-end">
                     <a href="#"><i class="bi bi-instagram socialicons"></i></a>
